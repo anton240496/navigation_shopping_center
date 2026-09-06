@@ -1,0 +1,67 @@
+<section class="page-header">
+  <h1>3D Навигация по зданию</h1>
+</section>
+
+<div class="info-panel">
+  <p>🏢 Здание с 2 этажами, комнатами и лестницей</p>
+  <p class="hint">
+    @if (!startRoom) {
+      👉 Выберите начальную точку (комнату)
+    } @else if (!endRoom) {
+      👉 Выберите конечную точку (комнату)
+    } @else {
+      📍 Маршрут: <strong>{{ startRoom.name }}</strong> → <strong>{{ endRoom.name }}</strong>
+      @if (startRoom.floor !== endRoom.floor) {
+        <span class="stairs-hint">(через лестницу)</span>
+      }
+    }
+  </p>
+</div>
+
+<div class="layout">
+  <!-- Панель выбора комнат -->
+  <div class="room-panel">
+    <h3>Комнаты</h3>
+
+    <div class="floor-section">
+      <h4>1 этаж</h4>
+      @for (room of rooms; track room.id) {
+        @if (room.floor === 1) {
+          <button
+            class="room-btn"
+            [class.start]="startRoom?.id === room.id"
+            [class.end]="endRoom?.id === room.id"
+            (click)="selectRoom(room)"
+          >
+            <span class="room-color" [style.background]="'#' + room.color.toString(16).padStart(6, '0')"></span>
+            {{ room.name }}
+          </button>
+        }
+      }
+    </div>
+
+    <div class="floor-section">
+      <h4>2 этаж</h4>
+      @for (room of rooms; track room.id) {
+        @if (room.floor === 2) {
+          <button
+            class="room-btn"
+            [class.start]="startRoom?.id === room.id"
+            [class.end]="endRoom?.id === room.id"
+            (click)="selectRoom(room)"
+          >
+            <span class="room-color" [style.background]="'#' + room.color.toString(16).padStart(6, '0')"></span>
+            {{ room.name }}
+          </button>
+        }
+      }
+    </div>
+
+    <button class="reset-btn" (click)="resetRoute()">🔄 Сбросить</button>
+  </div>
+
+  <!-- 3D канвас -->
+  <div class="canvas-wrapper">
+    <div id="canvas-container" class="canvas-container"></div>
+  </div>
+</div>

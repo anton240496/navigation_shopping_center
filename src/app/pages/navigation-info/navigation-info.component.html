@@ -1,0 +1,86 @@
+<section class="page-header">
+  <h1>Навигация в ТЦ «Галактика»</h1>
+</section>
+
+<!-- === КАРУСЕЛЬ ВОЗМОЖНОСТЕЙ === -->
+<section class="carousel-section">
+  <h2>Возможности системы</h2>
+  <div class="carousel">
+    <button class="carousel-btn prev" (click)="prevSlide()">‹</button>
+
+    <div class="carousel-track">
+      @for (slide of slides; track slide.title; let i = $index) {
+        <div
+          class="carousel-slide"
+          [class.active]="i === currentSlideIndex"
+          [class.prev]="i === currentSlideIndex - 1 || (currentSlideIndex === 0 && i === slides.length - 1)"
+        >
+          <span class="slide-icon">{{ slide.icon }}</span>
+          <h3>{{ slide.title }}</h3>
+          <p>{{ slide.description }}</p>
+        </div>
+      }
+    </div>
+
+    <button class="carousel-btn next" (click)="nextSlide()">›</button>
+  </div>
+
+  <!-- Индикаторы слайдов -->
+  <div class="carousel-dots">
+    @for (slide of slides; track slide.title; let i = $index) {
+      <button
+        class="dot"
+        [class.active]="i === currentSlideIndex"
+        (click)="goToSlide(i)"
+      ></button>
+    }
+  </div>
+</section>
+
+<!-- === АККОРДЕОН (FAQ) === -->
+<section class="accordion-section">
+  <h2>Часто задаваемые вопросы</h2>
+  <div class="accordion">
+    @for (item of accordionItems; track item.title; let i = $index) {
+      <div class="accordion-item" [class.open]="item.isOpen">
+        <button class="accordion-header" (click)="toggleAccordion(i)">
+          <span>{{ item.title }}</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-content">
+          <p>{{ item.content }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- === КНОПКИ ОТКРЫТИЯ МОДАЛЬНЫХ ОКОН === -->
+<section class="modal-buttons-section">
+  <h2>Подробнее о системе</h2>
+  <div class="modal-buttons">
+    @for (block of modalBlocks; track block.id) {
+      <button class="modal-btn" (click)="openModal(block.id)">
+        <span>{{ block.title }}</span>
+        <span class="modal-btn-arrow">→</span>
+      </button>
+    }
+  </div>
+</section>
+
+<!-- === МОДАЛЬНЫЕ ОКНА === -->
+@if (openModalId) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-window" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()">✕</button>
+      @for (block of modalBlocks; track block.id) {
+        @if (block.id === openModalId) {
+          <div class="modal-body">
+            <h3>{{ block.title }}</h3>
+            <pre>{{ block.content }}</pre>
+          </div>
+        }
+      }
+    </div>
+  </div>
+}

@@ -1,0 +1,139 @@
+:host {
+  display: block;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: 64px;
+}
+
+.navbar-brand .brand-link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.navbar-brand .brand-link:hover {
+  color: #7ec8e3;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(126, 200, 227, 0.2);
+  font-weight: 600;
+}
+
+/* === КНОПКА БУРГЕР === */
+/* Скрыта на десктопе, видна на мобильных */
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Анимация бургера в крестик */
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* === АДАПТИВ: МОБИЛЬНЫЕ УСТРОЙСТВА === */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+    position: relative; /* Для позиционирования выпадающего меню */
+  }
+
+  /* Показываем бургер */
+  .burger {
+    display: flex;
+  }
+
+  /* Меню выпадает вниз, скрыто по умолчанию */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: #1e3a5f;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-links.open {
+    max-height: 500px;
+  }
+
+  .nav-link {
+    padding: 0.9rem 1.5rem;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-link.active {
+    background: rgba(126, 200, 227, 0.2);
+  }
+}

@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.footer {
+  background: #1e3a5f;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.footer-content p {
+  margin: 0;
+}
+
+/* === АДАПТИВ: МОБИЛЬНЫЕ УСТРОЙСТВА === */
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem; /* Меньше отступы на мобильных */
+  }
+}
+

@@ -1,0 +1,33 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/" class="brand-link" (click)="closeMenu()">Angular App</a>
+  </div>
+
+  <!-- Кнопка бургер (видна только на мобильных) -->
+  <button
+    class="burger"
+    [class.active]="isMenuOpen"
+    (click)="toggleMenu()"
+    aria-label="Открыть меню"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" [class.open]="isMenuOpen">
+    @for (link of navLinks; track link.path) {
+      <li>
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+          class="nav-link"
+          (click)="closeMenu()"
+        >
+          {{ link.label }}
+        </a>
+      </li>
+    }
+  </ul>
+</nav>

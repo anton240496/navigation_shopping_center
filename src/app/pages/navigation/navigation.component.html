@@ -1,0 +1,107 @@
+<section class="page-header">
+  <h1>Навигация по помещению</h1>
+</section>
+
+<!-- Панель управления -->
+<div class="controls">
+  <button (click)="toggleMode()" class="btn" [class.active]="mode === 'route'">
+    {{ mode === 'select' ? '🗺️ Режим маршрута' : '📍 Режим выбора' }}
+  </button>
+  <button (click)="resetRoute()" class="btn btn-secondary">
+    🔄 Сбросить
+  </button>
+  <p class="hint">
+    @if (mode === 'select') {
+      <span>Кликните на комнату для информации</span>
+    } @else {
+      @if (!startPoint) {
+        <span>Выберите начальную точку</span>
+      } @else if (!endPoint) {
+        <span>Выберите конечную точку</span>
+      } @else {
+        <span>Маршрут: {{ startPoint.name }} → {{ endPoint.name }}</span>
+      }
+    }
+  </p>
+</div>
+
+<!-- Информация о выбранной комнате -->
+@if (selectedRoom && mode === 'select') {
+  <div class="room-info">
+    <h3>{{ selectedRoom.name }}</h3>
+    <p>ID: {{ selectedRoom.id }}</p>
+  </div>
+}
+
+<!-- SVG-карта помещения -->
+<div class="map-container">
+  <svg viewBox="0 0 560 380" class="floor-map">
+    <!-- Фон -->
+    <rect x="0" y="0" width="560" height="380" fill="#f0f0f0" rx="8" />
+
+    <!-- Комнаты -->
+    @for (room of rooms; track room.id) {
+      <g (click)="onRoomClick(room)" class="room-group">
+        <!-- Прямоугольник комнаты -->
+        <rect
+          [attr.x]="room.x"
+          [attr.y]="room.y"
+          [attr.width]="room.width"
+          [attr.height]="room.height"
+          [class.selected]="selectedRoom?.id === room.id"
+          [class.start]="isStartRoom(room)"
+          [class.end]="isEndRoom(room)"
+          class="room-rect"
+          rx="4"
+        />
+        <!-- Название комнаты -->
+        <text
+          [attr.x]="room.x + room.width / 2"
+          [attr.y]="room.y + room.height / 2"
+          class="room-label"
+          text-anchor="middle"
+          dominant-baseline="middle"
+        >
+          {{ room.name }}
+        </text>
+      </g>
+    }
+
+    <!-- Точки интереса -->
+    @for (point of points; track point.id) {
+      <g class="poi">
+        <circle [attr.cx]="point.x" [attr.cy]="point.y" r="14" class="poi-circle" />
+        <text
+          [attr.x]="point.x"
+          [attr.y]="point.y"
+          class="poi-icon"
+          text-anchor="middle"
+          dominant-baseline="central"
+        >
+          {{ point.icon }}
+        </text>
+      </g>
+    }
+
+    <!-- Маршрут (линия между точками) -->
+    @if (startPoint && endPoint) {
+      <line
+        [attr.x1]="startPoint.x"
+        [attr.y1]="startPoint.y"
+        [attr.x2]="endPoint.x"
+        [attr.y2]="endPoint.y"
+        class="route-line"
+      />
+    }
+
+    <!-- Метка начальной точки -->
+    @if (startPoint) {
+      <circle [attr.cx]="startPoint.x" [attr.cy]="startPoint.y" r="8" class="start-marker" />
+    }
+
+    <!-- Метка конечной точки -->
+    @if (endPoint) {
+      <circle [attr.cx]="endPoint.x" [attr.cy]="endPoint.y" r="8" class="end-marker" />
+    }
+  </svg>
+</div>

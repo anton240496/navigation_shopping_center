@@ -1,0 +1,119 @@
+<section class="page-header">
+  <h1>Контакты</h1>
+</section>
+
+<section class="contacts-layout">
+  <div class="contact-info">
+    <div class="contact-item">
+      <span class="contact-icon">📧</span>
+      <div>
+        <strong>Email</strong>
+        <p><a href="mailto:info@indoorsnavi.pro">info&#64;indoorsnavi.pro</a></p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📞</span>
+      <div>
+        <strong>Телефон</strong>
+        <p><a href="tel:+74995067860">+7 (499) 506-78-60</a></p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📍</span>
+      <div>
+        <strong>Адрес</strong>
+        <p>г. Москва, ул. Пресненский Вал, 15, БЦ «Белорусская»</p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">🕐</span>
+      <div>
+        <strong>Часы работы</strong>
+        <p>Пн-Пт: 9:00 — 18:00</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-block">
+    <h3>Напишите нам</h3>
+
+    @if (isSuccess) {
+      <div class="success-message">
+        ✅ Заявка успешно отправлена!<br>
+        Скоро с вами свяжется специалист.
+      </div>
+    }
+
+    <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <!-- Имя -->
+      <div class="form-group">
+        <div class="form-label-row">
+          <label for="name">Имя</label>
+          <span class="error-msg" [class.visible]="hasError('name')">
+            {{ hasError('name') ? getErrorMessage('name') : '' }}
+          </span>
+        </div>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Ваше имя"
+          [class.error]="hasError('name')"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <div class="form-label-row">
+          <label for="email">Email</label>
+          <span class="error-msg" [class.visible]="hasError('email')">
+            {{ hasError('email') ? getErrorMessage('email') : '' }}
+          </span>
+        </div>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="example@mail.ru"
+          [class.error]="hasError('email')"
+        />
+      </div>
+
+      <!-- Телефон -->
+      <div class="form-group">
+        <div class="form-label-row">
+          <label for="phone">Телефон</label>
+          <span class="error-msg" [class.visible]="hasError('phone')">
+            {{ hasError('phone') ? getErrorMessage('phone') : '' }}
+          </span>
+        </div>
+        <input
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          placeholder="+7(XXX)XXX-XX-XX"
+          [class.error]="hasError('phone')"
+          (input)="onPhoneInput($event)"
+        />
+      </div>
+
+      <!-- Сообщение -->
+      <div class="form-group">
+        <div class="form-label-row">
+          <label for="message">Сообщение</label>
+          <span class="error-msg" [class.visible]="hasError('message')">
+            {{ hasError('message') ? getErrorMessage('message') : '' }}
+          </span>
+        </div>
+        <textarea
+          id="message"
+          rows="5"
+          formControlName="message"
+          [class.error]="hasError('message')"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Отправить</button>
+    </form>
+  </div>
+</section>

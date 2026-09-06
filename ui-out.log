@@ -1,0 +1,31 @@
+
+> my-angular-app@0.0.0 test:ui
+> ng test --ui
+
+❯ Building...
+✔ Building...
+Initial chunk files                                             | Names                                                        |  Raw size
+spec-app-app.js                                                 | spec-app-app                                                 |  44.81 kB | 
+spec-app-pages-contacts-contacts.component.js                   | spec-app-pages-contacts-contacts.component                   |  27.59 kB | 
+spec-app-pages-rental-calculator-rental-calculator.component.js | spec-app-pages-rental-calculator-rental-calculator.component |  27.50 kB | 
+chunk-CGZBV6BD.js                                               | -                                                            |   4.12 kB | 
+init-testbed.js                                                 | init-testbed                                                 |   2.27 kB | 
+vitest-mock-patch.js                                            | vitest-mock-patch                                            | 988 bytes | 
+styles.css                                                      | styles                                                       |  56 bytes | 
+
+                                                                | Initial total                                                | 107.34 kB
+
+Application bundle generation complete. [1.253 seconds] - 2026-09-06T06:40:41.717Z
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90mD:/практика/praktik_sait/angular_navigation/my-angular-app[39m
+
+ [32m✓[39m [30m[42m my-angular-app [49m[39m src/app/app.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 137[2mms[22m[39m
+ [32m✓[39m [30m[42m my-angular-app [49m[39m src/app/pages/rental-calculator/rental-calculator.component.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 145[2mms[22m[39m
+ [32m✓[39m [30m[42m my-angular-app [49m[39m src/app/pages/contacts/contacts.component.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 157[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+[2m   Start at [22m 09:40:41
+[2m   Duration [22m 1.16s[2m (transform 125ms, setup 730ms, import 199ms, tests 439ms, environment 1.66s)[22m
+

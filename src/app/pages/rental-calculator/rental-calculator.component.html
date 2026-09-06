@@ -1,0 +1,69 @@
+<section class="page-header">
+  <h1>Калькулятор аренды</h1>
+</section>
+
+<!-- Цены по этажам -->
+<div class="price-info">
+  <h3>Стоимость аренды за 1 м² в месяц:</h3>
+  <div class="price-tags">
+    <span class="price-tag">1 этаж — 1 500 ₽/м²</span>
+    <span class="price-tag">2 этаж — 1 200 ₽/м²</span>
+  </div>
+</div>
+
+<!-- Таблица калькулятора -->
+<div class="calculator">
+  <table class="calc-table">
+    <thead>
+      <tr>
+        <th>Этаж</th>
+        <th>Кол-во помещений</th>
+        <th>Площадь каждого (м²)</th>
+        <th>Цена за м²</th>
+        <th>Сумма</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track row.id) {
+        <tr>
+          <td data-label="Этаж">
+            <select [(ngModel)]="row.floor">
+              <option [ngValue]="1">1 этаж</option>
+              <option [ngValue]="2">2 этаж</option>
+            </select>
+          </td>
+          <td data-label="Кол-во помещений">
+            <input type="number" [(ngModel)]="row.premisesCount" min="1" />
+          </td>
+          <td data-label="Площадь (м²)">
+            <input type="number" [(ngModel)]="row.areaPerPremise" min="1" />
+          </td>
+          <td data-label="Цена за м²" class="cell-price">{{ formatNumber(getPriceForFloor(row.floor)) }} ₽</td>
+          <td data-label="Сумма" class="cell-total">{{ formatNumber(getRowTotal(row)) }} ₽</td>
+          <td data-label="">
+            <button class="btn-remove" (click)="removeRow(row.id)">✕</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <button class="btn-add" (click)="addRow()">+ Добавить строку</button>
+</div>
+
+<!-- Итого -->
+<div class="totals">
+  <div class="total-item">
+    <span class="total-label">Всего помещений:</span>
+    <span class="total-value">{{ totalPremises }} шт.</span>
+  </div>
+  <div class="total-item">
+    <span class="total-label">Общая площадь:</span>
+    <span class="total-value">{{ formatNumber(totalArea) }} м²</span>
+  </div>
+  <div class="total-item grand">
+    <span class="total-label">Итого в месяц:</span>
+    <span class="total-value">{{ formatNumber(grandTotal) }} ₽</span>
+  </div>
+</div>

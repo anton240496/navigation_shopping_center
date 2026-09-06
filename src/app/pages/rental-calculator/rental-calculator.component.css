@@ -1,0 +1,260 @@
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #1e3a5f;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+  margin: 0;
+}
+
+/* === БЛОК ЦЕН === */
+
+.price-info {
+  background: #e8f4fd;
+  border: 1px solid #b8daff;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.price-info h3 {
+  margin: 0 0 0.75rem 0;
+  color: #1e3a5f;
+  font-size: 1rem;
+}
+
+.price-tags {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.price-tag {
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1e3a5f;
+  border: 1px solid #b8daff;
+}
+
+/* === КАЛЬКУЛЯТОР === */
+
+.calculator {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.calc-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calc-table thead {
+  background: #f8f9fa;
+}
+
+.calc-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #6c757d;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.calc-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.calc-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Фиксированные ширины колонок */
+.calc-table th:nth-child(1),
+.calc-table td:nth-child(1) { width: 120px; }
+
+.calc-table th:nth-child(2),
+.calc-table td:nth-child(2) { width: 130px; }
+
+.calc-table th:nth-child(3),
+.calc-table td:nth-child(3) { width: 140px; }
+
+.calc-table th:nth-child(4),
+.calc-table td:nth-child(4) { width: 110px; }
+
+.calc-table th:nth-child(5),
+.calc-table td:nth-child(5) { width: 130px; }
+
+.calc-table th:nth-child(6),
+.calc-table td:nth-child(6) { width: 50px; text-align: center; }
+
+select, input[type="number"] {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+select:focus, input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.cell-price {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.cell-total {
+  color: #1e3a5f;
+  font-weight: 700;
+}
+
+.btn-add {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background: #f8f9fa;
+  color: #667eea;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-add:hover {
+  background: #e8f4fd;
+}
+
+.btn-remove {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #dc3545;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+  margin: 0 auto;
+}
+
+.btn-remove:hover {
+  background: #c82333;
+}
+
+/* === ИТОГО === */
+
+.totals {
+  background: #1e3a5f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: white;
+}
+
+.total-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.total-item.grand {
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.total-value {
+  font-weight: 600;
+}
+
+/* === АДАПТИВ: ПЛАНШЕТЫ И МОБИЛЬНЫЕ === */
+
+@media (max-width: 768px) {
+  .price-tags {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Таблица превращается в карточки-строки */
+  .calc-table thead {
+    display: none; /* Шапку скрываем — названия будут в ячейках */
+  }
+
+  .calc-table,
+  .calc-table tbody,
+  .calc-table tr,
+  .calc-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* Строка = карточка: поля идут слева направо, переносятся вниз */
+  .calc-table tr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .calc-table td {
+    flex: 1 1 140px;   /* Базовая ширина ячейки */
+    min-width: 120px;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  /* Название поля над значением */
+  .calc-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 0.25rem;
+    min-height: 1em;
+  }
+
+  /* Ячейки без поля ввода — просто текст */
+  .calc-table td.cell-price::after,
+  .calc-table td.cell-total::after {
+    content: '';
+  }
+
+  .calc-table td.cell-price,
+  .calc-table td.cell-total {
+    padding-top: 0.3rem;
+  }
+
+  /* Кнопка удаления — небольшая, справа */
+  .calc-table td[data-label=''] {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .calc-table td[data-label='']::before {
+    display: none; /* У кнопки нет названия */
+  }
+}

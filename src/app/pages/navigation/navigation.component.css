@@ -1,0 +1,214 @@
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #1e3a5f;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+  margin: 0;
+}
+
+/* === Панель управления === */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #667eea;
+  background: white;
+  color: #667eea;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: #667eea;
+  color: white;
+}
+
+.btn.active {
+  background: #667eea;
+  color: white;
+}
+
+.btn-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background: #6c757d;
+  color: white;
+}
+
+.hint {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* === Информация о комнате === */
+
+.room-info {
+  background: #e8f4fd;
+  border: 1px solid #b8daff;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.room-info h3 {
+  margin: 0 0 0.25rem 0;
+  color: #1e3a5f;
+}
+
+.room-info p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+/* === Карта === */
+
+.map-container {
+  display: flex;
+  justify-content: center;
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid #e9ecef;
+}
+
+/* Адаптивная SVG-карта: масштабируется под контейнер */
+.floor-map {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  display: block;
+}
+
+/* === Комнаты === */
+
+.room-group {
+  cursor: pointer;
+}
+
+.room-rect {
+  fill: #ffffff;
+  stroke: #adb5bd;
+  stroke-width: 2;
+  transition: all 0.2s ease;
+}
+
+.room-group:hover .room-rect {
+  fill: #e8f4fd;
+  stroke: #667eea;
+}
+
+.room-rect.selected {
+  fill: #cce5ff;
+  stroke: #007bff;
+  stroke-width: 3;
+}
+
+.room-rect.start {
+  fill: #d4edda;
+  stroke: #28a745;
+  stroke-width: 3;
+}
+
+.room-rect.end {
+  fill: #f8d7da;
+  stroke: #dc3545;
+  stroke-width: 3;
+}
+
+.room-label {
+  font-size: 11px;
+  font-weight: 600;
+  fill: #495057;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* === Точки интереса === */
+
+.poi {
+  cursor: default;
+}
+
+.poi-circle {
+  fill: #fff3cd;
+  stroke: #ffc107;
+  stroke-width: 2;
+}
+
+.poi-icon {
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* === Маршрут === */
+
+.route-line {
+  stroke: #667eea;
+  stroke-width: 3;
+  stroke-dasharray: 8 4;
+  animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.start-marker {
+  fill: #28a745;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.end-marker {
+  fill: #dc3545;
+  stroke: white;
+  stroke-width: 2;
+}
+
+/* === АДАПТИВ: МОБИЛЬНЫЕ УСТРОЙСТВА === */
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    text-align: center;
+  }
+
+  .hint {
+    text-align: center;
+  }
+
+  .map-container {
+    padding: 0.5rem;
+  }
+
+  .floor-map {
+    width: 100%;
+    height: auto;
+  }
+}
