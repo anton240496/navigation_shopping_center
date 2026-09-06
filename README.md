@@ -28,7 +28,7 @@ npm -v
 
 ```bash
 git clone https://github.com/username/angular_navigation.git
-cd angular_navigation/my-angular-app
+cd navigation_shopping_center-main>
 ```
 
 Установите все зависимости из `package.json`:
